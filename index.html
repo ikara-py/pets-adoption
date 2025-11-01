@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adopt-a-Pet</title>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body>
+    <button id="toggle-view-btn" class="toggle-view-btn">Manage Pets</button>
+    <div id="app-view">
+      <!-- Main swiping interface -->
+      <main class="app-container" id="app-container">
+        <!-- Pet cards appear here -->
+        <div class="card-container" id="card-container"></div>
+
+        <!-- Action buttons -->
+        <div class="actions">
+          <button id="skip-btn" title="Skip this pet">❌</button>
+          <button id="like-btn" title="Adopt this pet">❤️</button>
+        </div>
+      </main>
+
+      <!-- Summary screen (hidden initially) -->
+      <section id="summary" class="summary-container hidden">
+        <h2>My Adopted Animals</h2>
+        <div id="adopted-list" class="adopted-grid"></div>
+        <button id="restart-btn">Start Over</button>
+      </section>
+    </div>
+
+    <div id="admin-view" class="admin-container hidden">
+      <div class="admin-header">
+        <h2>Pet Management</h2>
+        <div class="header-controls">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search pets..."
+            class="search-input"
+          />
+          <select
+            id="age-filter"
+            class="filter-select"
+            title="Filter pets by age"
+          >
+            <option value="">All Ages</option>
+            <option value="1">1 year</option>
+            <option value="2">2 years</option>
+            <option value="3">3 years</option>
+            <option value="4">4+ years</option>
+          </select>
+          <select id="sort-select" class="sort-select" title="Sort pets">
+            <option value="name-asc">Name A-Z</option>
+            <option value="name-desc">Name Z-A</option>
+            <option value="age-asc">Age ↑</option>
+            <option value="age-desc">Age ↓</option>
+          </select>
+          <button type="button" id="clear-filters" class="clear-btn">
+            Clear
+          </button>
+        </div>
+      </div>
+
+      <div class="admin-content">
+        <div class="form-section">
+          <h3 id="form-title">Add New Pet</h3>
+          <form id="pet-form" class="pet-form">
+            <input type="hidden" id="pet-id" />
+            <div class="form-row">
+              <div class="form-group">
+                <label for="pet-name">Name</label>
+                <input
+                  type="text"
+                  id="pet-name"
+                  required
+                  minlength="2"
+                  maxlength="30"
+                />
+                <div class="error-message" id="name-error">
+                  Name must be 2-30 characters
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="pet-age">Age</label>
+                <input type="number" id="pet-age" required min="1" max="20" />
+                <div class="error-message" id="age-error">
+                  Age must be between 1-20 years
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="pet-img">Image URL</label>
+                <input type="url" id="pet-img" required />
+                <div class="error-message" id="img-error">
+                  Please enter a valid URL
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="pet-desc">Description</label>
+                <input
+                  type="text"
+                  id="pet-desc"
+                  required
+                  minlength="5"
+                  maxlength="100"
+                />
+                <div class="error-message" id="desc-error">
+                  Description must be 5-100 characters
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" id="form-submit-btn">Add Pet</button>
+              <button type="button" id="form-cancel-btn" class="hidden">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="table-section">
+          <div class="table-header">
+            <h3>Pet List</h3>
+            <span class="pet-count" id="pet-count">0 pets</span>
+          </div>
+          <div class="datatable-container">
+            <table class="pet-datatable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Description</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="pet-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./assets/js/app.js"></script>
+  </body>
+</html>
